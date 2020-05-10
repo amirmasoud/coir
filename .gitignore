@@ -7,4 +7,4 @@ wordpress/*
 !wordpress/README.md
 
 deploy/proxy/logs/*
-deploy/proxy/README.md
+!deploy/proxy/README.md
