@@ -1,0 +1,46 @@
+version: "3.3"
+services:
+  database:
+    container_name: "${DATABASE_CONTAINER_NAME}"
+    image: "${DATABASE_VERSION}"
+    volumes:
+      - "./deploy/database:/var/lib/mysql"
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+
+  wordpress:
+    container_name: "${WORDPRESS_NAME}"
+    depends_on:
+      - database
+    image: "wordpress:${WORDPRESS_VERSION}"
+    environment:
+      WORDPRESS_DB_HOST: "database:3306"
+      WORDPRESS_DB_USER: ${DATABASE_USER}
+      WORDPRESS_DB_PASSWORD: ${DATABASE_PASSWORD}
+      WORDPRESS_DB_NAME: ${DATABASE_NAME}
+    volumes:
+      - wordpress-data:/var/www/html:consistent
+
+  proxy:
+    container_name: "${PROXY_NAME}"
+    depends_on:
+      - wordpress
+    image: "nginx:${NGINX_VERSION}"
+    ports:
+      - 80:80
+    volumes:
+      - ./deploy/proxy/conf.d:/etc/nginx/conf.d
+      - ./deploy/proxy/logs:/var/log/nginx
+      - wordpress-data:/var/www/html
+
+volumes:
+  wordpress-data:
+    driver_opts:
+      type: none
+      device: ${PWD}/wordpress
+      o: bind

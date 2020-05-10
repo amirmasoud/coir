@@ -1,0 +1,10 @@
+**/.DS_Store
+
+deploy/database/*
+!deploy/database/README.md
+
+wordpress/*
+!wordpress/README.md
+
+deploy/proxy/logs/*
+deploy/proxy/README.md
