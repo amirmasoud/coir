@@ -44,11 +44,11 @@ docker-compose down -v
 
 ## Where is WordPress
 
-run `docker-compose` and wait for WordPress files to be copied to `wordpress` directory. navigate to that directory. the rest is history.
+After running `docker-compose up -d` your WordPress files to be copied to `wordpress` directory. navigate to that directory. the rest is history.
 
 ## Change Versions
 
-You can upgrade our downgrade to your desired version by stoping containers first, editing `.env` file and start your containers.
+You can upgrade our downgrade to your desired version by stoping containers first, editing `.env` file and start your containers again.
 
 For example, if you want to use `php`: 7.2 instead of 7.4 you should:
 
@@ -64,9 +64,49 @@ For example, if you want to use `php`: 7.2 instead of 7.4 you should:
 
 ⚠️ for `.test` domain you should also append `127.0.0.1 yourcustomdomain.test` to `/etc/hosts` file on Mac or `c:\Windows\System32\Drivers\etc\hosts` file on Windows. (You may need root access on Mac or administrator privileges on Windows to perform this step)
 
+## Database Credintials
+
+in `.env`, following credentials are corresponding to database credentials:
+
+`DATABASE_USER`: database username that WordPress is using.
+
+`DATABASE_PASSWORD`: database username that WordPress is using.
+
+`DATABASE_NAME`: name of the database that WordPress is using.
+
+`DATABASE_ROOT`: database root password which WordPress is NOT using it.
+
+## SSH into containers
+
+**SSH into WordPress container:**
+
+```console
+docker-compose exec wordpress bash
+```
+
+**SSH into database (MariaDB) container:**
+
+*as root*: following command will ask for your root database password (`DATABASE_ROOT` variable in `.env`)
+
+```console
+docker-compose exec database mysql --password
+```
+
+*as non-root*: It will ask for you non-root database password (`DATABASE_PASSWORD` variable in `.env`). Change `--user` value if you have changed the user in `.env`
+
+```console
+docker-compose exec database mysql --user=coir --password
+```
+
+**SSH into proxy (NGINX) container:**
+
+```console
+docker-compose exec proxy sh
+```
+
 ## NGINX Logs
 
-Navigate to `/deploy/proxy/logs` and you can check `access.log` and `error.log` files.
+Navigate to `deploy/proxy/logs` and you can check `access.log` and `error.log` files.
 
 ## File Structure
 
