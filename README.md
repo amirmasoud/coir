@@ -36,11 +36,15 @@ docker-compose stop
 
 ## Remove containers
 
-⚠️ Notice: Your database and WordPress will remain intact.
+⚠️ Your database and WordPress will remain intact.
 
 ```console
 docker-compose down -v
 ```
+
+## Modify .env
+
+⚠️ After finish modifying `.env` file you have to restart containers for changes to take effect.
 
 ## Where is WordPress
 
@@ -61,6 +65,7 @@ For example, if you want to use `php`: 7.2 instead of 7.4 you should:
 
 1. Open `deploy/conf.d/coir.conf`
 2. Change `server_name` to your domain.
+3. Restart your containers for changes to take effect.
 
 ⚠️ for `.test` domain you should also append `127.0.0.1 yourcustomdomain.test` to `/etc/hosts` file on Mac or `c:\Windows\System32\Drivers\etc\hosts` file on Windows. (You may need root access on Mac or administrator privileges on Windows to perform this step)
 
@@ -121,4 +126,8 @@ Navigate to `deploy/proxy/logs` and you can check `access.log` and `error.log` f
   |  |  |-conf.d        # .conf
 ```
 
-> If you found this repository useful please consider starring the project.
+## Support
+
+If you found any issue or have any ideas to enhance the project please do not hesitate to open an issue.
+
+If you found this repository useful please consider starring the project.
