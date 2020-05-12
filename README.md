@@ -114,6 +114,10 @@ docker-compose exec database mysql --user=coir --password
 docker-compose exec proxy sh
 ```
 
+## uploads.ini
+
+Change `deploy/wordpress/uploads.ini` parameters value to modify upload limits. (Default `upload_max_filesize` is 64M)
+
 ## Cannot Download Thmese/Plugins
 
 Try followig solutions:

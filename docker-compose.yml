@@ -26,6 +26,7 @@ services:
       WORDPRESS_DEBUG: ${WORDPRESS_DEBUG}
     volumes:
       - ./deploy/wordpress/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./deploy/wordpress/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       - wordpress-data:/var/www/html:consistent
 
   proxy:
