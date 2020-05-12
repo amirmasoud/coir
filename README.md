@@ -6,7 +6,7 @@ A docker based project for WordPress utilizing MariaDB and NGINX.
 
 `WordPress`:5.4.1
 
-`PHP`: php7.4-fpm
+`PHP`: php7.4-fpm-alpine
 
 `MariaDB`: 10.5.2
 
@@ -49,6 +49,11 @@ docker-compose down -v
 ## Where is WordPress
 
 After running `docker-compose up -d` your WordPress files to be copied to `wordpress` directory. navigate to that directory. the rest is history.
+
+## Disable WordPress Debug Mode
+
+1. Set `WORDPRESS_DEBUG` to an empty values
+2. Restart containers
 
 ## Change Versions
 

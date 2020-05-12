@@ -23,7 +23,9 @@ services:
       WORDPRESS_DB_USER: ${DATABASE_USER}
       WORDPRESS_DB_PASSWORD: ${DATABASE_PASSWORD}
       WORDPRESS_DB_NAME: ${DATABASE_NAME}
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG}
     volumes:
+      # - ./deploy/wordpress/php-fpm.conf:/usr/local/etc/php-fpm.conf
       - wordpress-data:/var/www/html:consistent
 
   proxy:
