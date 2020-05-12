@@ -96,13 +96,13 @@ docker-compose exec wordpress bash
 
 **SSH into database (MariaDB) container:**
 
-*as root*: following command will ask for your root database password (`DATABASE_ROOT` variable in `.env`)
+_as root_: following command will ask for your root database password (`DATABASE_ROOT` variable in `.env`)
 
 ```console
 docker-compose exec database mysql --password
 ```
 
-*as non-root*: It will ask for you non-root database password (`DATABASE_PASSWORD` variable in `.env`). Change `--user` value if you have changed the user in `.env`
+_as non-root_: It will ask for you non-root database password (`DATABASE_PASSWORD` variable in `.env`). Change `--user` value if you have changed the user in `.env`
 
 ```console
 docker-compose exec database mysql --user=coir --password
@@ -113,6 +113,13 @@ docker-compose exec database mysql --user=coir --password
 ```console
 docker-compose exec proxy sh
 ```
+
+## Cannot Download Thmese/Plugins
+
+Try followig solutions:
+
+1. Run `docker-compose exec wordpress chown -R www-data:www-data /var/www/html/wp-content` to fix directory permissions.
+2. add `define( 'FS_METHOD', 'direct' );` to `wp-config.php`
 
 ## NGINX Logs
 
