@@ -118,6 +118,8 @@ docker-compose exec proxy sh
 
 Change `deploy/wordpress/uploads.ini` parameters value to modify upload limits. (Default `upload_max_filesize` is 64M)
 
+Also change `client_max_body_size` (in server and location) in `deploy/proxy/conf.d/coir.conf`.
+
 ## Cannot Download Thmese/Plugins
 
 Try followig solutions:
