@@ -1,6 +1,7 @@
 # Coir
 
-A docker based project for WordPress utilizing MariaDB and NGINX.
+A docker based project for WordPress theme and plugin development utilizing
+MariaDB and NGINX.
 
 ## Version
 
