@@ -1,7 +1,6 @@
 # Coir
 
-A docker based project for WordPress theme and plugin development utilizing
-MariaDB and NGINX.
+A Docker based project for WordPress theme and plugin development utilizing MariaDB and NGINX.
 
 ## Version
 
@@ -15,17 +14,8 @@ MariaDB and NGINX.
 
 ## How to use
 
-clone the repository:
-
-```console
-git@github.com:amirmasoud/coir.git
-```
-
-Fire `docker-compose.yml` file:
-
-```console
-docker-compose up -d
-```
+1. `git clone https://github.com/amirmasoud/coir.git`
+2. `docker-compose up -d`
 
 Open [localhost](http://localhost) on default port, 80.
 
