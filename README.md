@@ -15,7 +15,8 @@ A Docker based project for WordPress theme and plugin development utilizing Mari
 ## How to use
 
 1. `git clone https://github.com/amirmasoud/coir.git`
-2. `docker-compose up -d`
+2. `cd coir`
+3. `docker-compose up -d`
 
 Open [localhost](http://localhost) on default port, 80.
 
