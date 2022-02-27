@@ -27,7 +27,24 @@ services:
     volumes:
       - ./deploy/wordpress/www.conf:/usr/local/etc/php-fpm.d/www.conf
       - ./deploy/wordpress/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-      - wordpress-data:/var/www/html:consistent
+      - wordpress-data:/var/www/html
+
+  wordpress-cli:
+    container_name: "${WORDPRESS_CLI_NAME}"
+    user: xfs
+    depends_on:
+      - database
+      - wordpress
+    image: "wordpress:${WORDPRESS_CLI_VERSION}"
+    environment:
+      WORDPRESS_DB_HOST: "database:3306"
+      WORDPRESS_DB_USER: ${DATABASE_USER}
+      WORDPRESS_DB_PASSWORD: ${DATABASE_PASSWORD}
+      WORDPRESS_DB_NAME: ${DATABASE_NAME}
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG}
+    command: "tail -f /dev/null"
+    volumes:
+      - wordpress-data:/var/www/html
 
   proxy:
     container_name: "${PROXY_NAME}"
@@ -43,7 +60,3 @@ services:
 
 volumes:
   wordpress-data:
-    driver_opts:
-      type: none
-      device: ${PWD}/wordpress
-      o: bind
