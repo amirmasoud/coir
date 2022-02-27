@@ -31,7 +31,6 @@ services:
 
   wordpress-cli:
     container_name: "${WORDPRESS_CLI_NAME}"
-    user: xfs
     depends_on:
       - database
       - wordpress
@@ -42,6 +41,7 @@ services:
       WORDPRESS_DB_PASSWORD: ${DATABASE_PASSWORD}
       WORDPRESS_DB_NAME: ${DATABASE_NAME}
       WORDPRESS_DEBUG: ${WORDPRESS_DEBUG}
+      HOME: /tmp
     command: "tail -f /dev/null"
     volumes:
       - wordpress-data:/var/www/html
